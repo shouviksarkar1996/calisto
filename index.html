@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calisto Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <div class="calculator-shell">
+        <section class="calculator">
+          <header class="calc-header">
+            <div>
+              <p class="eyebrow">Calisto</p>
+              <h1>Quantum Calculator</h1>
+            </div>
+            <div class="header-actions">
+              <label class="theme-select">
+                <span>Theme</span>
+                <select id="themeSelect" aria-label="Select theme">
+                  <option value="solar">Solar</option>
+                  <option value="neon">Neon</option>
+                  <option value="noir">Noir</option>
+                </select>
+              </label>
+              <button class="mode-btn" id="toggleSign" type="button" aria-label="Toggle sign">
+                ±
+              </button>
+            </div>
+          </header>
+
+          <section class="display" aria-live="polite">
+            <input
+              class="expression-input"
+              id="expressionInput"
+              type="text"
+              value="0"
+              aria-label="Expression editor"
+              spellcheck="false"
+            />
+            <div class="result" id="result">0</div>
+          </section>
+
+          <section class="control-row" role="group" aria-label="Modes and settings">
+            <button class="pill" id="scienceToggle" data-open="false">Science Off</button>
+            <button class="pill" id="angleToggle" data-mode="deg">DEG</button>
+            <label class="pill">
+              Precision
+              <select id="precisionSelect">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6" selected>6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+              </select>
+            </label>
+            <label class="pill">
+              Rounding
+              <select id="roundingSelect">
+                <option value="round" selected>Round</option>
+                <option value="floor">Floor</option>
+                <option value="ceil">Ceil</option>
+              </select>
+            </label>
+            <button class="pill" id="soundToggle" data-active="true">Sound On</button>
+          </section>
+
+          <section class="memory-panel" aria-label="Memory stack">
+            <div class="memory-header">
+              <span>Memory Stack</span>
+              <div class="memory-actions">
+                <button class="key key-ghost" data-action="memory-store">MS</button>
+                <button class="key key-ghost" data-action="memory-clear">MC</button>
+              </div>
+            </div>
+            <div class="memory-slots">
+              <button class="memory-slot" data-action="memory-recall" data-value="0" data-memory-slot="0">
+                M1 <span>—</span>
+              </button>
+              <button class="memory-slot" data-action="memory-recall" data-value="1" data-memory-slot="1">
+                M2 <span>—</span>
+              </button>
+              <button class="memory-slot" data-action="memory-recall" data-value="2" data-memory-slot="2">
+                M3 <span>—</span>
+              </button>
+              <button class="memory-slot" data-action="memory-recall" data-value="3" data-memory-slot="3">
+                M4 <span>—</span>
+              </button>
+              <button class="memory-slot" data-action="memory-recall" data-value="4" data-memory-slot="4">
+                M5 <span>—</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="pad pad-science is-collapsed" role="group" aria-label="Scientific keypad">
+            <button class="key key-ghost" data-action="function" data-value="sin">sin</button>
+            <button class="key key-ghost" data-action="function" data-value="cos">cos</button>
+            <button class="key key-ghost" data-action="function" data-value="tan">tan</button>
+            <button class="key key-ghost" data-action="function" data-value="sqrt">√</button>
+            <button class="key key-ghost" data-action="operator" data-value="^">xʸ</button>
+            <button class="key key-ghost" data-action="paren-left">(</button>
+            <button class="key key-ghost" data-action="paren-right">)</button>
+            <button class="key key-ghost" data-action="constant" data-value="π">π</button>
+            <button class="key key-ghost" data-action="constant" data-value="e">e</button>
+            <button class="key key-ghost" data-action="constant" data-value="ANS">Ans</button>
+            <button class="key key-ghost" data-action="constant" data-value="x">x</button>
+            <button class="key key-ghost" data-action="operator" data-value="×">×</button>
+            <button class="key key-ghost" data-action="operator" data-value="÷">÷</button>
+            <button class="key key-ghost" data-action="operator" data-value="−">−</button>
+            <button class="key key-ghost" data-action="operator" data-value="+">+</button>
+            <button class="key key-ghost" data-action="percent">%</button>
+            <button class="key key-ghost" data-action="clear">AC</button>
+          </section>
+
+          <section class="pad" role="group" aria-label="Calculator keypad">
+            <button class="key key-ghost" data-action="clear">AC</button>
+            <button class="key key-ghost" data-action="backspace">DEL</button>
+            <button class="key key-accent" data-action="operator" data-value="÷">÷</button>
+            <button class="key key-accent" data-action="operator" data-value="×">×</button>
+            <button class="key key-accent" data-action="operator" data-value="−">−</button>
+
+            <button class="key" data-action="digit" data-value="7">7</button>
+            <button class="key" data-action="digit" data-value="8">8</button>
+            <button class="key" data-action="digit" data-value="9">9</button>
+            <button class="key key-accent" data-action="operator" data-value="+">+</button>
+
+            <button class="key" data-action="digit" data-value="4">4</button>
+            <button class="key" data-action="digit" data-value="5">5</button>
+            <button class="key" data-action="digit" data-value="6">6</button>
+            <button class="key key-equals" data-action="equals">=</button>
+
+            <button class="key" data-action="digit" data-value="1">1</button>
+            <button class="key" data-action="digit" data-value="2">2</button>
+            <button class="key" data-action="digit" data-value="3">3</button>
+            <button class="key" data-action="decimal">.</button>
+            <button class="key key-super" data-action="digit" data-value="0">0</button>
+          </section>
+        </section>
+
+        <aside class="history">
+          <div class="history-header">
+            <h2>History</h2>
+            <div class="history-actions">
+              <button class="key key-ghost" data-action="history-clear">Clear</button>
+              <button class="key key-ghost" id="historyExport">Export</button>
+            </div>
+          </div>
+          <div class="toast" id="toast" role="status" aria-live="polite"></div>
+          <ul class="history-list" id="historyList"></ul>
+          <div class="graph-panel">
+            <h3>Graph</h3>
+            <canvas id="graphCanvas" width="240" height="180"></canvas>
+            <p>Use <strong>x</strong> in your expression to plot.</p>
+          </div>
+          <div class="converter-panel">
+            <h3>Converter</h3>
+            <label>
+              Type
+              <select id="converterType">
+                <option value="length">Length</option>
+                <option value="temp">Temperature</option>
+                <option value="currency">Currency</option>
+              </select>
+            </label>
+            <div class="converter-row">
+              <input id="converterInput" type="number" value="1" />
+              <select id="converterFrom"></select>
+              <span>to</span>
+              <select id="converterTo"></select>
+            </div>
+            <div class="converter-output" id="converterOutput">1</div>
+            <p class="converter-note">Currency uses static sample rates.</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
